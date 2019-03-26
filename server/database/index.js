@@ -56,7 +56,7 @@ let bookSchema = mongoose.Schema({
 
 let Book = mongoose.model('Book', bookSchema);
 
-module.exports.seed = async () => {
+module.exports.seed = (callback) => {
   // clean out current database, if any test records clogging up
   Book.deleteMany({}, async () => {
     var book;
@@ -115,5 +115,3 @@ module.exports.seed = async () => {
     }
   })
 }
-
-module.exports.seed();
