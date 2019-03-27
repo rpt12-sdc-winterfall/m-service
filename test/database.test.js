@@ -1,32 +1,30 @@
-const assert = require('assert');
 const mongoose = require('mongoose');
-const mongoDB = require('../server/database/index.js');
 const chai = require('chai');
-const expect = chai.expect;
+const mongoDB = require('../server/database/index.js');
+
+const { expect } = chai;
 const testSchema = mongoDB.bookSchema;
 const testModel = mongoose.model('Test', testSchema);
 
-describe('seeding script', function() {
-  before(function(done) { // from https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d
-    mongoose.connect('mongodb://localhost/testDatabase');
-    const db = mongoose.connection;
-    db.on('error', console.error.bind(console, 'connection error'));
-    console.log('We are connected to test database!');
+describe('seeding script', () => {
+  before((done) => { // from https://medium.com/nongaap/beginners-guide-to-writing-mongodb-mongoose-unit-tests-using-mocha-chai-ab5bdf3d3b1d
+    mongoose.connect('mongodb://localhost/testDatabase', { useNewUrlParser: true });
     mongoDB.seed(testModel, () => {
       done();
     });
   });
 
-  it('should seed the database with 100 records', function(done) {
+  it('should seed the database with 100 records', (done) => {
     testModel.find({}, (err, docs) => {
       expect(docs.length).to.equal(100);
       done();
-    })
+    });
   });
 
-  it('should seed the database with a correct model', function(done) {
+  it('should seed the database with a correct model', (done) => {
     testModel.findOne({ id: 6 }, (err, doc) => {
-      expect(doc._doc).to.have.all.keys(
+      const document = doc._doc;
+      expect(document).to.have.all.keys(
         {
           id: true,
           __v: true,
@@ -39,7 +37,7 @@ describe('seeding script', function() {
             four: 'Number',
             three: 'Number',
             two: 'Number',
-            one: 'Number'
+            one: 'Number',
           },
           reviews: 'Number',
           links: {
@@ -56,9 +54,9 @@ describe('seeding script', function() {
               indigo: 'String',
               alibris: 'String',
               betterWorldBooks: 'String',
-              indieBound: 'String'
+              indieBound: 'String',
             },
-            worldcat: 'String'
+            worldcat: 'String',
           },
           type: 'String',
           pages: 'Number',
@@ -72,17 +70,17 @@ describe('seeding script', function() {
             language: 'String',
             series: {
               name: 'String',
-              url: 'String'
-            }
-          }
-        }
+              url: 'String',
+            },
+          },
+        },
       );
       done();
-    })
+    });
   });
 
-  after(function(done){
-    mongoose.connection.db.dropDatabase(function(){
+  after((done) => {
+    mongoose.connection.db.dropDatabase(() => {
       mongoose.connection.close(done);
     });
   });

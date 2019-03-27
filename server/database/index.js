@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const fake = require('faker');
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/books');
 
-let bookSchema = mongoose.Schema({
+const bookSchema = mongoose.Schema({
   id: {
     type: Number,
     index: true,
-    unique: true
+    unique: true,
   },
   title: String,
   author: String,
@@ -16,7 +17,7 @@ let bookSchema = mongoose.Schema({
     four: Number,
     three: Number,
     two: Number,
-    one: Number
+    one: Number,
   },
   reviews: Number,
   links: {
@@ -33,9 +34,9 @@ let bookSchema = mongoose.Schema({
       indigo: String,
       alibris: String,
       betterWorldBooks: String,
-      indieBound: String
+      indieBound: String,
     },
-    worldcat: String
+    worldcat: String,
   },
   type: String,
   pages: Number,
@@ -49,18 +50,19 @@ let bookSchema = mongoose.Schema({
     language: String,
     series: {
       name: String,
-      url: String
-    }
-  }
+      url: String,
+    },
+  },
 });
 
-let Book = mongoose.model('Book', bookSchema);
+const Book = mongoose.model('Book', bookSchema);
 
-let seed = (Model, callback) => {
+const seed = (Model, callback) => {
   // clean out current database, if any test records clogging up
   Model.deleteMany({}, async () => {
-    var book;
-    for (var i = 0; i < 100; i++) {
+    let book;
+    const queries = [];
+    for (let i = 0; i < 100; i += 1) {
       book = new Model();
 
       // initiate a bunch of new book info
@@ -73,8 +75,8 @@ let seed = (Model, callback) => {
         four: fake.random.number(),
         three: fake.random.number(),
         two: fake.random.number(),
-        one: fake.random.number()
-      }
+        one: fake.random.number(),
+      };
       book.reviews = fake.random.number();
       book.links = {
         kindle: fake.internet.url(),
@@ -90,36 +92,36 @@ let seed = (Model, callback) => {
           indigo: fake.internet.url(),
           alibris: fake.internet.url(),
           betterWorldBooks: fake.internet.url(),
-          indieBound: fake.internet.url()
-        }
-      }
+          indieBound: fake.internet.url(),
+        },
+      };
       book.type = fake.random.word();
-      book.pages = fake.random.number({max: 3000});
+      book.pages = fake.random.number({ max: 3000 });
       book.publishdate = fake.date.past();
       book.publisher = fake.company.companyName();
       book.metadata = {
         originalTitle: book.title,
         isbn: fake.random.number(),
         isbn13: fake.random.number(),
-        language: 'English'
-      }
+        language: 'English',
+      };
 
       if (i % 2 === 0) {
         book.series = {
           name: fake.random.words(2),
-          url: fake.internet.url()
-        }
+          url: fake.internet.url(),
+        };
       }
 
-      await book.save();
-      // console.log(`${i} saved as ${book.title}`)
+      queries.push(book.save());
     }
+    await Promise.all(queries);
     callback();
-  })
-}
+  });
+};
 
 module.exports = {
-  bookSchema: bookSchema,
-  seed: seed,
-  Book: Book
-}
+  bookSchema,
+  seed,
+  Book,
+};
