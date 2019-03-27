@@ -11,10 +11,12 @@
     "seed": "node seed.js"
   },
   "dependencies": {
+    "chai": "^4.2.0",
     "faker": "^4.1.0",
     "mongoose": "^5.4.19"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "mocha": "^6.0.2"
   }
 }

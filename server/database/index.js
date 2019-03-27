@@ -56,12 +56,12 @@ let bookSchema = mongoose.Schema({
 
 let Book = mongoose.model('Book', bookSchema);
 
-module.exports.seed = (callback) => {
+let seed = (Model, callback) => {
   // clean out current database, if any test records clogging up
-  Book.deleteMany({}, async () => {
+  Model.deleteMany({}, async () => {
     var book;
     for (var i = 0; i < 100; i++) {
-      book = new Book();
+      book = new Model();
 
       // initiate a bunch of new book info
       book.id = i;
@@ -74,7 +74,8 @@ module.exports.seed = (callback) => {
         three: fake.random.number(),
         two: fake.random.number(),
         one: fake.random.number()
-      },
+      }
+      book.reviews = fake.random.number();
       book.links = {
         kindle: fake.internet.url(),
         amazon: fake.internet.url(),
@@ -111,7 +112,14 @@ module.exports.seed = (callback) => {
       }
 
       await book.save();
-      console.log(`${i} saved as ${book.title}`)
+      // console.log(`${i} saved as ${book.title}`)
     }
+    callback();
   })
+}
+
+module.exports = {
+  bookSchema: bookSchema,
+  seed: seed,
+  Book: Book
 }
