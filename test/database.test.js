@@ -75,8 +75,8 @@ describe('seeding script', () => {
             },
           },
           image: true,
-        },
-      );
+        // eslint-disable-next-line function-paren-newline
+        });
       done();
     });
   });

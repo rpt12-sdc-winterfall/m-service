@@ -12,6 +12,7 @@ const bookSchema = mongoose.Schema({
   title: String,
   author: String,
   description: String,
+  image: String,
   ratings: {
     five: Number,
     four: Number,
@@ -40,7 +41,7 @@ const bookSchema = mongoose.Schema({
   },
   type: String,
   pages: Number,
-  publishdate: Date,
+  publishDate: Date,
   publisher: String,
   metadata: {
     originalTitle: String,
