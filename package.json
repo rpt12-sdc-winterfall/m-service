@@ -9,7 +9,7 @@
   },
   "scripts": {
     "seed": "node seed.js",
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "./node_modules/mocha/bin/mocha --exit"
   },
   "dependencies": {
     "chai": "^4.2.0",
