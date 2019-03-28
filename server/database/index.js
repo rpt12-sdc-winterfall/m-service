@@ -97,7 +97,7 @@ const seed = (Model, callback) => {
       };
       book.type = fake.random.word();
       book.pages = fake.random.number({ max: 3000 });
-      book.publishdate = fake.date.past();
+      book.publishDate = fake.date.past();
       book.publisher = fake.company.companyName();
       book.metadata = {
         originalTitle: book.title,
@@ -105,6 +105,7 @@ const seed = (Model, callback) => {
         isbn13: fake.random.number(),
         language: 'English',
       };
+      book.image = 'http://lorempixel.com/480/640/abstract/';
 
       if (i % 2 === 0) {
         book.series = {

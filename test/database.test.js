@@ -23,6 +23,7 @@ describe('seeding script', () => {
 
   it('should seed the database with a correct model', (done) => {
     testModel.findOne({ id: 6 }, (err, doc) => {
+      // eslint-disable-next-line no-underscore-dangle
       const document = doc._doc;
       expect(document).to.have.all.keys(
         {
@@ -60,7 +61,7 @@ describe('seeding script', () => {
           },
           type: 'String',
           pages: 'Number',
-          publishdate: 'Date',
+          publishDate: 'Date',
           publisher: 'String',
           metadata: {
             originalTitle: 'String',
@@ -73,6 +74,7 @@ describe('seeding script', () => {
               url: 'String',
             },
           },
+          image: true,
         },
       );
       done();
