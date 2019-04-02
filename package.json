@@ -28,6 +28,7 @@
     "mocha": "^6.0.2"
   },
   "jest": {
-    "setupFilesAfterEnv": ["jest-extended"]
+    "setupFilesAfterEnv": ["jest-extended"],
+    "collectCoverage": true
   }
 }
