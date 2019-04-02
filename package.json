@@ -9,7 +9,7 @@
   },
   "scripts": {
     "seed": "node seed.js",
-    "test": "./node_modules/mocha/bin/mocha --exit"
+    "test": "jest --forceExit --detectOpenHandles --maxWorkers=10"
   },
   "dependencies": {
     "chai": "^4.2.0",
@@ -23,6 +23,11 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.5.0",
+    "jest-extended": "^0.11.1",
     "mocha": "^6.0.2"
+  },
+  "jest": {
+    "setupFilesAfterEnv": ["jest-extended"]
   }
 }
