@@ -122,8 +122,16 @@ const seed = (Model, callback) => {
   });
 };
 
+const retrieve = (id, callback) => {
+  Book.findOne({ id }, (err, doc) => {
+    // console.log('doc is', doc);
+    callback(err, doc);
+  });
+};
+
 module.exports = {
   bookSchema,
   seed,
   Book,
+  retrieve,
 };

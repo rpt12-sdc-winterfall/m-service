@@ -47,7 +47,7 @@ describe('seeding script', () => {
   });
 
   afterAll((done) => {
-    mongoose.connection.db.dropDatabase(() => {
+    testModel.deleteMany({}, () => {
       mongoose.disconnect();
       return done();
     });
