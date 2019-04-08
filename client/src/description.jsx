@@ -1,27 +1,21 @@
 import React from 'react';
 
-class Description extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return(
-      <div>
-        <div className='summary'>
-          <h1>{this.props.title}</h1>
-          <h2>{this.props.author}</h2>
-          <p>{this.props.description}</p>
-        </div>
-        <div className='purchase'>
-          <button>Kindle</button>
-          <button>Amazon</button>
-          <button>Stores</button>
-          <button>Libraries</button>
-        </div>
+const Description = (props) => {
+  return(
+    <div>
+      <div className='summary'>
+        <h1>{props.title}</h1>
+        <h2>{props.author}</h2>
+        <p>{props.description}</p>
       </div>
-    )
-  }
-}
+      <div className='purchase'>
+        <button type='button'>Kindle</button>
+        <button type='button'>Amazon</button>
+        <button type='button'>Stores</button>
+        <button type='button'>Libraries</button>
+      </div>
+    </div>
+  )
+};
 
 export default Description;

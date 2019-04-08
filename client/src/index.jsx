@@ -16,27 +16,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const setBook = this.updateState.bind(this);
-
     fetch('http://localhost:3004/books/7')
-      .then(function(response) {
+      .then((response) => {
         return response.json();
       })
-      .then(function(myJson) {
-        setBook(myJson);
+      .then((book) => {
+        this.setState({ book: book });
       });
-  }
-
-  updateState(book) {
-    this.setState({
-      book: book
-    });
   }
 
   render() {
     return (
       <div style={flexStyle}>
-        <Image image={this.state.book.image}/>
+        <Image image={this.state.book.image} />
         <Description
           title={this.state.book.title}
           description={this.state.book.description}
