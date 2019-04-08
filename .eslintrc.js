@@ -6,10 +6,14 @@
  */
 
 module.exports = {
-  extends: 'airbnb-base',
+  extends: [
+    'airbnb',
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   env: {
     'commonjs': true,
     'node': true,
-    'jest': true,
+    'jest': true
   }
 };

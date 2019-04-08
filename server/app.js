@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 
 app.get('/books/:id', (req, res) => {
   books.retrieve(req.params.id, (err, doc) => {
+    // add err handling
     res.send(doc);
   });
 });
