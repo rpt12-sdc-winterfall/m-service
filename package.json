@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "react-dev": "webpack -d --watch",
+    "build": "webpack -d --watch",
     "seed": "node seed.js",
     "test": "jest --forceExit --detectOpenHandles --maxWorkers=10",
     "start": "nodemon ./server/server.js"
