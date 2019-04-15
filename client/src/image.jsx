@@ -60,10 +60,7 @@ const Dropdown = styled.button`
   display: block;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: inherit;
-  font-style: inherit;
-  font-weight: inherit;
   margin: auto;
-  text-align: inherit;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
   border-left: 1px solid #38883d;
@@ -71,7 +68,6 @@ const Dropdown = styled.button`
   width: 27px;
   height: 28px;
   padding: 5px;
-  float:right;
 `
 
 const BookRateText = styled.div`
@@ -82,18 +78,6 @@ const BookRateText = styled.div`
   box-sizing: content-box;
   display: block;
   font-size: 11px;
-  height: 16px;
-  line-height: 14px;
-  margin: 0 auto;
-  padding: 3px 6px 0 6px;
-  width: 100px;
-    background: transparent;
-  border: 0;
-  -moz-box-sizing: content-box;
-  -webkit-box-sizing: content-box;
-  box-sizing: content-box;
-  display: block;
-  font-size: 12px;
   height: 16px;
   line-height: 14px;
   margin: 0 auto;
