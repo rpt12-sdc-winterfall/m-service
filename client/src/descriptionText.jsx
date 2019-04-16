@@ -27,7 +27,6 @@ class DescriptionText extends React.Component {
   }
 
   toggleView() {
-    console.log('view toggled');
     this.setState(state => {
       return { full: !(state.full) }
     })
