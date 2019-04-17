@@ -24,10 +24,16 @@ class App extends React.Component {
         return response.json();
       })
       .then((book) => {
-        console.log(book.ratings)
+        const date = new Date(book.publishDate);
+        const month = date.toLocaleString('en-us', { month: 'long' });
+        const day = date.toLocaleString('en-us', { day: 'numeric' });
+        const year = date.toLocaleDateString('en-us', { year: 'numeric' });
+        const publishDate = month + ' ' + day + 'th ' + year;
+        console.log(month);
         this.setState({
           book: book,
-          weightedReviews: this.averageReviews(book.ratings)
+          weightedReviews: this.averageReviews(book.ratings),
+          publishDate: publishDate,
         });
       });
 
@@ -50,6 +56,11 @@ class App extends React.Component {
           ratings={{...this.state.book.ratings}}
           reviews={this.state.book.reviews}
           weightedReviews={this.state.weightedReviews}
+          links={{...this.state.book.links}}
+          pages={this.state.book.pages}
+          publishDate={this.state.publishDate}
+          publisher={this.state.book.publisher}
+          metadata={{...this.state.book.metadata}}
         />
       </div>
     );

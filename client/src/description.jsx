@@ -45,14 +45,74 @@ const SummaryArea = styled.div`
   padding-bottom: 10px;
 `
 
-// eslint-disable-next-line react/prefer-stateless-function
+const PurchaseRow = styled.div`
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  padding-top: 10px;
+`
+
+const GetACopy = styled.h2`
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: #382110;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  margin: 4px 0 4px 0;
+`
+
+const PurchaseButtons = styled.ul`
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  float: left;
+  padding: 0;
+  margin: 0;
+`
+
+const PurchaseButton = styled.li`
+  display: inline;
+  list-style: none;
+`
+
+const PurchaseLink = styled.a`
+  border-radius: 3px;
+  border: 1px solid #D6D0C4;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: #333333;
+  background-color: #F4F1EA;
+  line-height: 1;
+  padding: 8px 12px;
+  margin-right: 8px;
+  margin-top: 8px;
+`
+
+const Clear = styled.div`
+  clear: both;
+  display: block;
+  height: 0;
+  margin: 0;
+  font-size: 1px;
+  line-height: 0;
+`
+
+const MetaDiv = styled.div`
+  padding: 5px 0;
+  font-size: 12px;
+  color: #333;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  line-height: 18px;
+`
+
 class Description extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      weightedReviews: 0
-    }
 
     this.numberWithCommas = this.numberWithCommas.bind(this);
   }
@@ -64,7 +124,8 @@ class Description extends React.Component {
   render() {
     const totalRatings = this.numberWithCommas(this.props.ratings.five + this.props.ratings.four + this.props.ratings.three + this.props.ratings.two + this.props.ratings.one);
     const totalReviews = this.numberWithCommas(this.props.reviews + '');
-    // console.log(this.props.reviews)
+
+    console.log(this.props.links)
 
     return(
       <div>
@@ -90,12 +151,28 @@ class Description extends React.Component {
           </RatingsRow>
           <DescriptionText text={this.props.description} />
         </SummaryArea>
-        <div className='purchase'>
-          <button type='button'>Kindle</button>
-          <button type='button'>Amazon</button>
-          <button type='button'>Stores</button>
-          <button type='button'>Libraries</button>
-        </div>
+        <PurchaseRow>
+          <GetACopy>Get a Copy</GetACopy>
+          <PurchaseButtons>
+            <PurchaseButton>
+              <PurchaseLink href={this.props.links.kindle}>Kindle Unlimited</PurchaseLink>
+            </PurchaseButton>
+            <PurchaseButton>
+              <PurchaseLink href={this.props.links.amazon}>Amazon</PurchaseLink>
+            </PurchaseButton>
+            <PurchaseButton>
+              <PurchaseLink>Stores ▾</PurchaseLink>
+            </PurchaseButton>
+            <PurchaseButton>
+              <PurchaseLink>Libraries</PurchaseLink>
+            </PurchaseButton>
+          </PurchaseButtons>
+          <Clear />
+        </PurchaseRow>
+        <MetaDiv>
+          <div>Paperback, {this.props.pages} pages</div>
+          <div>Published {this.props.publishDate} by {this.props.publisher}</div>
+        </MetaDiv>
       </div>
     )
   }
