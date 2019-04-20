@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
 import DescriptionText from './descriptionText.jsx';
+import RatingsPopup from './ratingsPopup.jsx';
 
 const Title = styled.h1`
   margin-bottom: 2px;
@@ -142,7 +143,7 @@ class Description extends React.Component {
             <div>
               {this.props.weightedReviews.toFixed(2)}
               <RatingsDot> · </RatingsDot>
-              <RatingsText>Rating details</RatingsText>
+              <RatingsPopup />
               <RatingsDot> · </RatingsDot>
               <RatingsText>{totalRatings} ratings</RatingsText>
               <RatingsDot> · </RatingsDot>
