@@ -50,7 +50,7 @@ class RatingsPopup extends React.Component {
     super(props);
 
     this.state = {
-      isOpen: false
+      isOpen: false,
     }
     this.toggle = this.toggle.bind(this);
   }
@@ -62,6 +62,15 @@ class RatingsPopup extends React.Component {
   }
 
   render() {
+    // establish percentages
+    const totalRatings = this.props.ratings.five + this.props.ratings.four + this.props.ratings.three + this.props.ratings.two + this.props.ratings.one;
+    const fivePercent = parseInt((this.props.ratings.five / totalRatings) * 100);
+    const fourPercent = parseInt((this.props.ratings.four / totalRatings) * 100);
+    const threePercent = parseInt((this.props.ratings.three / totalRatings) * 100);
+    const twoPercent = parseInt((this.props.ratings.two / totalRatings) * 100);
+    const onePercent = parseInt((this.props.ratings.one / totalRatings) * 100);
+
+    // should refactor tr to be loop into new component
     return(
       <Manager>
         <Reference>
@@ -86,15 +95,15 @@ class RatingsPopup extends React.Component {
                           <StarRatings
                             numberOfStars={1}
                             starDimension='15px'
-                            starSpacing={0}
+                            starSpacing='0'
                             starEmptyColor='rgb(250, 96, 74)'
                           />
                         </RatingsStar>
                         <td width="350">
-                          <RatingsBar length="100%">&nbsp;</RatingsBar>
+                          <RatingsBar length={this.props.reviewPercents.five}>&nbsp;</RatingsBar>
                         </td>
                         <RatingsNumbers width="90">
-                          66% (1380359)
+                          {fivePercent}% ({this.props.ratings.five})
                         </RatingsNumbers>
                       </tr>
                       <tr>
@@ -103,15 +112,15 @@ class RatingsPopup extends React.Component {
                           <StarRatings
                             numberOfStars={1}
                             starDimension='15px'
-                            starSpacing={0}
+                            starSpacing='0'
                             starEmptyColor='rgb(250, 96, 74)'
                           />
                         </RatingsStar>
                         <td width="350">
-                          <RatingsBar length="37%">&nbsp;</RatingsBar>
+                          <RatingsBar length={this.props.reviewPercents.four}>&nbsp;</RatingsBar>
                         </td>
                         <RatingsNumbers width="90">
-                          24% (513932)
+                          {fourPercent}% ({this.props.ratings.four})
                         </RatingsNumbers>
                       </tr>
                       <tr>
@@ -120,15 +129,15 @@ class RatingsPopup extends React.Component {
                           <StarRatings
                             numberOfStars={1}
                             starDimension='15px'
-                            starSpacing={0}
+                            starSpacing='0'
                             starEmptyColor='rgb(250, 96, 74)'
                           />
                         </RatingsStar>
                         <td width="350">
-                          <RatingsBar length="10%">&nbsp;</RatingsBar>
+                          <RatingsBar length={this.props.reviewPercents.three}>&nbsp;</RatingsBar>
                         </td>
                         <RatingsNumbers width="90">
-                          7% (148717)
+                          {threePercent}% ({this.props.ratings.three})
                         </RatingsNumbers>
                       </tr>
                       <tr>
@@ -137,15 +146,15 @@ class RatingsPopup extends React.Component {
                           <StarRatings
                             numberOfStars={1}
                             starDimension='15px'
-                            starSpacing={0}
+                            starSpacing='0'
                             starEmptyColor='rgb(250, 96, 74)'
                           />
                         </RatingsStar>
                         <td width="350">
-                          <RatingsBar length="1%">&nbsp;</RatingsBar>
+                          <RatingsBar length={this.props.reviewPercents.two}>&nbsp;</RatingsBar>
                         </td>
                         <RatingsNumbers width="90">
-                          1% (23322)
+                          {twoPercent}% ({this.props.ratings.two})
                         </RatingsNumbers>
                       </tr>
                       <tr>
@@ -154,20 +163,20 @@ class RatingsPopup extends React.Component {
                           <StarRatings
                             numberOfStars={1}
                             starDimension='15px'
-                            starSpacing={0}
+                            starSpacing='0'
                             starEmptyColor='rgb(250, 96, 74)'
                           />
                         </RatingsStar>
                         <td width="350">
-                          <RatingsBar length="0%">&nbsp;</RatingsBar>
+                          <RatingsBar length={this.props.reviewPercents.one}>&nbsp;</RatingsBar>
                         </td>
                         <RatingsNumbers width="90">
-                          0% (8395)
+                          {onePercent}% ({this.props.ratings.one})
                         </RatingsNumbers>
                       </tr>
                     </tbody>
                   </RatingsTable>
-                  98% of people liked it
+                  {fivePercent + fourPercent + threePercent}% of people liked it
                   <div ref={arrowProps.ref} style={arrowProps.style} />
                 </RatingsWindow>
               </div>

@@ -126,8 +126,6 @@ class Description extends React.Component {
     const totalRatings = this.numberWithCommas(this.props.ratings.five + this.props.ratings.four + this.props.ratings.three + this.props.ratings.two + this.props.ratings.one);
     const totalReviews = this.numberWithCommas(this.props.reviews + '');
 
-    console.log(this.props.links)
-
     return(
       <div>
         <SummaryArea>
@@ -143,7 +141,10 @@ class Description extends React.Component {
             <div>
               {this.props.weightedReviews.toFixed(2)}
               <RatingsDot> · </RatingsDot>
-              <RatingsPopup />
+              <RatingsPopup
+                ratings={{...this.props.ratings}}
+                reviewPercents={{...this.props.reviewPercents}}
+              />
               <RatingsDot> · </RatingsDot>
               <RatingsText>{totalRatings} ratings</RatingsText>
               <RatingsDot> · </RatingsDot>
