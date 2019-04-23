@@ -20,7 +20,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3004/books/7')
+    fetch('http://localhost:3004/books/14')
       .then((response) => {
         return response.json();
       })

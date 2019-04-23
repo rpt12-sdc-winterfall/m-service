@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
 import DescriptionText from './descriptionText.jsx';
 import RatingsPopup from './ratingsPopup.jsx';
+import StoreDropdown from './storeDropdown.jsx';
 
 const Title = styled.h1`
   margin-bottom: 2px;
@@ -115,11 +116,22 @@ class Description extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isOpen: false,
+    }
+
+    this.toggle = this.toggle.bind(this);
     this.numberWithCommas = this.numberWithCommas.bind(this);
   }
 
   numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
   }
 
   render() {
@@ -163,10 +175,12 @@ class Description extends React.Component {
               <PurchaseLink href={this.props.links.amazon}>Amazon</PurchaseLink>
             </PurchaseButton>
             <PurchaseButton>
-              <PurchaseLink>Stores ▾</PurchaseLink>
+              <span onMouseEnter={this.toggle} onMouseLeave={this.toggle}>
+                <StoreDropdown isOpen={this.state.isOpen} stores={this.props.links.stores}/>
+              </span>
             </PurchaseButton>
             <PurchaseButton>
-              <PurchaseLink>Libraries</PurchaseLink>
+              <PurchaseLink href={this.props.links.worldcat}>Libraries</PurchaseLink>
             </PurchaseButton>
           </PurchaseButtons>
           <Clear />
