@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Manager, Reference, Popper, Arrow } from 'react-popper';
+import { Manager, Reference, Popper } from 'react-popper';
 import StarRatings from 'react-star-ratings';
 
 const RatingsWindow = styled.div`
@@ -56,8 +56,10 @@ class RatingsPopup extends React.Component {
   }
 
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
+    this.setState((state) => {
+      return ({
+        isOpen: !state.isOpen
+      });
     });
   }
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
-import DescriptionText from './descriptionText.jsx';
-import RatingsPopup from './ratingsPopup.jsx';
-import StoreDropdown from './storeDropdown.jsx';
+import DescriptionText from './descriptionText';
+import RatingsPopup from './ratingsPopup';
+import StoreDropdown from './storeDropdown';
 
 const Title = styled.h1`
   margin-bottom: 2px;
@@ -129,8 +129,10 @@ class Description extends React.Component {
   }
 
   toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
+    this.setState((state) => {
+      return ({
+        isOpen: !state.isOpen
+      });
     });
   }
 

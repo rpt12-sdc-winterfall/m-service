@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Manager, Reference, Popper, Arrow } from 'react-popper';
+import { Manager, Reference, Popper } from 'react-popper';
 
 const StoreButton = styled.span`
   border-radius: 3px;

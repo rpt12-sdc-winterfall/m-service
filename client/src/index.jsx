@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Image from './image.jsx';
-import Description from './description.jsx';
+import Image from './image';
+import Description from './description';
 
 const flexStyle = {
   display: 'flex'
