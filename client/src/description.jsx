@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
-import DescriptionText from './descriptionText.jsx';
+import DescriptionText from './descriptionText';
+import RatingsPopup from './ratingsPopup';
+import StoreDropdown from './storeDropdown';
 
 const Title = styled.h1`
   margin-bottom: 2px;
@@ -114,6 +116,11 @@ class Description extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      isOpen: false,
+    }
+
+    this.toggle = this.toggle.bind(this);
     this.numberWithCommas = this.numberWithCommas.bind(this);
   }
 
@@ -121,11 +128,17 @@ class Description extends React.Component {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  toggle() {
+    this.setState((state) => {
+      return ({
+        isOpen: !state.isOpen
+      });
+    });
+  }
+
   render() {
     const totalRatings = this.numberWithCommas(this.props.ratings.five + this.props.ratings.four + this.props.ratings.three + this.props.ratings.two + this.props.ratings.one);
     const totalReviews = this.numberWithCommas(this.props.reviews + '');
-
-    console.log(this.props.links)
 
     return(
       <div>
@@ -142,7 +155,10 @@ class Description extends React.Component {
             <div>
               {this.props.weightedReviews.toFixed(2)}
               <RatingsDot> · </RatingsDot>
-              <RatingsText>Rating details</RatingsText>
+              <RatingsPopup
+                ratings={{...this.props.ratings}}
+                reviewPercents={{...this.props.reviewPercents}}
+              />
               <RatingsDot> · </RatingsDot>
               <RatingsText>{totalRatings} ratings</RatingsText>
               <RatingsDot> · </RatingsDot>
@@ -161,10 +177,12 @@ class Description extends React.Component {
               <PurchaseLink href={this.props.links.amazon}>Amazon</PurchaseLink>
             </PurchaseButton>
             <PurchaseButton>
-              <PurchaseLink>Stores ▾</PurchaseLink>
+              <span onMouseEnter={this.toggle} onMouseLeave={this.toggle}>
+                <StoreDropdown isOpen={this.state.isOpen} stores={this.props.links.stores}/>
+              </span>
             </PurchaseButton>
             <PurchaseButton>
-              <PurchaseLink>Libraries</PurchaseLink>
+              <PurchaseLink href={this.props.links.worldcat}>Libraries</PurchaseLink>
             </PurchaseButton>
           </PurchaseButtons>
           <Clear />
