@@ -20,7 +20,10 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3004/books/14')
+    const bookId = window.location.pathname.split('/')[1] || 0;
+
+    // this will need to be changed for launched proxy, or hardcoded for service
+    fetch(`/books/${bookId}`)
       .then((response) => {
         return response.json();
       })
