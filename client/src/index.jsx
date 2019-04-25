@@ -81,7 +81,7 @@ class App extends React.Component {
   render() {
     return (
       <div style={flexStyle}>
-        <Image image={this.state.book.image} />
+        <Image image={this.state.book.id} />
         <Description
           title={this.state.book.title}
           description={this.state.book.description}
