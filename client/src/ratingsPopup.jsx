@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
 import { Manager, Reference, Popper } from 'react-popper';
 import StarRatings from 'react-star-ratings';
+
+const { styled } = window;
 
 const RatingsWindow = styled.div`
   width: 550px;

@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
 import StarRatings from 'react-star-ratings';
 import DescriptionText from './descriptionText';
 import RatingsPopup from './ratingsPopup';
 import StoreDropdown from './storeDropdown';
+
+const { styled } = window;
 
 const Title = styled.h1`
   margin-bottom: 2px;

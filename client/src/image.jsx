@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import React from 'react';
 import StarRatings from 'react-star-ratings';
+
+const { styled } = window;
 
 const BookCover = styled.img`
   width: 150px;

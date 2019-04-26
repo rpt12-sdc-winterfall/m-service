@@ -1,6 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import Image from './image';
 import Description from './description';
 
@@ -22,7 +19,6 @@ class App extends React.Component {
   componentDidMount() {
     const bookId = window.location.pathname.split('/')[1] || 0;
 
-    // this will need to be changed for launched proxy, or hardcoded for service
     fetch(`http://bookdescriptionservice-env.gp7avcyjnp.us-east-2.elasticbeanstalk.com/books/${bookId}`)
       .then((response) => {
         return response.json();
