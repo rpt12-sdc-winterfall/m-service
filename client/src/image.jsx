@@ -1,6 +1,6 @@
-import styled from 'styled-components'
-import React from 'react';
 import StarRatings from 'react-star-ratings';
+
+const { styled } = window;
 
 const BookCover = styled.img`
   width: 150px;
@@ -118,9 +118,11 @@ class Image extends React.Component {
   }
 
   render() {
+    const image = `https://s3.us-east-2.amazonaws.com/elasticbeanstalk-us-east-2-500188952591/book-images/${this.props.image}.jpg`
+
     return(
       <PreviewWrapper>
-        <BookCover src={this.props.image} alt='book cover' />
+        <BookCover src={image} alt='book cover' />
         <ChoiceButton>
           <WantToRead type='button'>Want to Read</WantToRead>
           <Dropdown type='button'>▼</Dropdown>

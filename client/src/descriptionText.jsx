@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+const { styled } = window;
 
 const DescriptionArea = styled.div`
   font-family: "Merriweather", "Georgia", serif;
