@@ -10,7 +10,7 @@
 ## Table of Contents
 
 1. [Usage](#Usage)
-2. [Custom Setup](#custom%20setup) - essential to getting the service running
+2. [Custom Config](#custom%20config) - essential to getting the service running
 3. [Requirements](#requirements)
 4. [API Endpoint](#api%20endpoint)
 
@@ -24,7 +24,7 @@
 4. `npm start`
 5. Navigate to [localhost:3004](http://localhost:3004)
 
-## Custom Consig
+## Custom Config
 
 > A couple elements are still hardcoded into the service, given time constraints during FEC. Two things to watch out for are:
 
