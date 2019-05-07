@@ -10,8 +10,9 @@
 ## Table of Contents
 
 1. [Usage](#Usage)
-2. [Requirements](#requirements)
-3. [API Endpoint](#api%20endpoint)
+2. [Custom Setup](#custom%20setup) - essential to getting the service running
+3. [Requirements](#requirements)
+4. [API Endpoint](#api%20endpoint)
 
 ## Usage
 
@@ -22,6 +23,13 @@
 3. `npm run build` - compiles webpack into `bundle.js`
 4. `npm start`
 5. Navigate to [localhost:3004](http://localhost:3004)
+
+## Custom Consig
+
+> A couple elements are still hardcoded into the service, given time constraints during FEC. Two things to watch out for are:
+
+1. Image load - currently, in `image.jsx`, the image files are hardcoded to reference an S3 folder.
+2. Fetch book - in `index.jsx`, the book info is currently hardcoded as a `fetch` to the AWS service that was previously running
 
 ## Requirements
 
