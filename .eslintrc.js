@@ -1,19 +1,19 @@
-/**
- * These rules enforce the Hack Reactor Style Guide
- *
- * Visit this repo for more information:
- *   https://github.com/reactorcore/eslint-config-hackreactor
- */
-
 module.exports = {
-  extends: [
-    'airbnb',
-    "eslint:recommended",
-    "plugin:react/recommended"
-  ],
+  extends: "airbnb",
+  rules: {
+    "linebreak-style": ["error", "windows"],
+    "no-console": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "react/react-in-jsx-scope": "off"
+  },
   env: {
-    'commonjs': true,
+    'browser': true,
     'node': true,
-    'jest': true
-  }
+    'jest': true,
+  },
+  "globals": {
+    "React": "readonly",
+    "ReactDOM": "readonly",
+    "styled": "readonly",
+  },
 };
