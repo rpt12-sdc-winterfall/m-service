@@ -1,5 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import { shallow } from 'enzyme';
+import 'jest-styled-components'
 
 // Components
 import Image from '../image';
