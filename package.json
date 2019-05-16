@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "build": "webpack -d --watch",
+    "build": "webpack -p --watch",
     "seed": "node seed.js",
     "test": "jest --forceExit --detectOpenHandles --maxWorkers=10",
     "start": "node ./server/server.js"
@@ -38,6 +38,8 @@
     "eslint-plugin-react": "^7.12.4",
     "jest": "^24.5.0",
     "jest-extended": "^0.11.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "supertest": "^4.0.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
