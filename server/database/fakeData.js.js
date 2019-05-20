@@ -28,7 +28,7 @@ const CreateFakeDocument = function CreateFakeDocument(i) {
       apple: fake.internet.url(),
       google: fake.internet.url(),
       abebooks: fake.internet.url(),
-      bookDesository: fake.internet.url(),
+      bookDepository: fake.internet.url(),
       indigo: fake.internet.url(),
       alibris: fake.internet.url(),
       betterWorldBooks: fake.internet.url(),
