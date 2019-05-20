@@ -1,28 +1,78 @@
-const request = require('supertest');
-const app = require('../server/app.js');
+/* You'll need to have the express server running
+ * for these tests to pass. */
 
-describe('Test the root path', () => {
-  test('It should GET a well-structured object', (done) => {
-    request(app).get('/books/7').then((response) => {
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toContainAllKeys([
-        'id',
-        '__v',
-        '_id',
-        'title',
-        'author',
-        'description',
-        'ratings',
-        'reviews',
-        'links',
-        'type',
-        'pages',
-        'publishDate',
-        'publisher',
-        'metadata',
-        'image',
-      ]);
-      done();
-    });
+const axios = require('axios');
+const { CreateFakeDocument } = require('../server/database/fakeData.js');
+
+describe('the server', () => {
+  test('should GET a well-structured object', () => {
+    expect.assertions(2);
+
+    return axios('http://localhost:3004/books/1')
+      .then((response) => {
+        expect(response.status).toBe(200);
+        expect(response.data).toContainAllKeys([
+          'id',
+          '__v',
+          '_id',
+          'title',
+          'author',
+          'description',
+          'ratings',
+          'reviews',
+          'links',
+          'type',
+          'pages',
+          'publishDate',
+          'publisher',
+          'metadata',
+          'image',
+        ]);
+      });
+  });
+
+  test('should POST a new book to the database', () => {
+    const newBook = CreateFakeDocument(100);
+
+    expect.assertions(3);
+
+    return axios.post('http://localhost:3004/books', newBook)
+      .then(() => axios('http://localhost:3004/books/100')
+        .then((response) => {
+          expect(response.data).toHaveProperty('title', newBook.title);
+          expect(response.data).toHaveProperty('author', newBook.author);
+          expect(response.data).toHaveProperty('reviews', newBook.reviews);
+        }))
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  test('should update the book details in the database', () => {
+    expect.assertions(1);
+
+    return axios.patch('http://localhost:3004/books/1', {
+      author: 'Jamal',
+    })
+      .then(() => axios('http://localhost:3004/books/1')
+        .then((response) => {
+          expect(response.data).toHaveProperty('author', 'Jamal');
+        }))
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  test('should DELETE the specified book from the database', () => {
+    expect.assertions(1);
+
+    return axios.delete('http://localhost:3004/books/1')
+      .then(() => axios('http://localhost:3004/books/1')
+        .then((response) => {
+          expect(response.data).toBe('This book doesn\'t exist!');
+        }))
+      .catch((err) => {
+        console.log(err);
+      });
   });
 });
