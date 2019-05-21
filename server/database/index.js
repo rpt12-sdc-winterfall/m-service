@@ -30,7 +30,7 @@ const bookSchema = mongoose.Schema({
       apple: String,
       google: String,
       abebooks: String,
-      bookDesository: String,
+      bookDepository: String,
       indigo: String,
       alibris: String,
       betterWorldBooks: String,
