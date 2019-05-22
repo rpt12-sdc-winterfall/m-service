@@ -51,10 +51,10 @@ describe('the server', () => {
   test('should update the book details in the database', () => {
     expect.assertions(1);
 
-    return axios.patch('http://localhost:3004/books/1', {
+    return axios.patch('http://localhost:3004/books/2', {
       author: 'Jamal',
     })
-      .then(() => axios('http://localhost:3004/books/1')
+      .then(() => axios('http://localhost:3004/books/2')
         .then((response) => {
           expect(response.data).toHaveProperty('author', 'Jamal');
         }))

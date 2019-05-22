@@ -32,6 +32,7 @@ app.get('/books/:id', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.send('something went wrong...');
     });
 });
 
@@ -44,13 +45,14 @@ app.post('/books', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.send('something went wrong...');
     });
 });
 
 app.patch('/books/:id', jsonParser, (req, res) => {
   Book.findOneAndUpdate(
     { id: req.params.id },
-    { author: req.body.author },
+    req.body,
     {
       useFindAndModify: false,
       new: true,
@@ -61,6 +63,7 @@ app.patch('/books/:id', jsonParser, (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.send('something went wrong...');
     });
 });
 
@@ -71,6 +74,7 @@ app.delete('/books/:id', (req, res) => {
     })
     .catch((err) => {
       console.log(err);
+      res.send('something went wrong...');
     });
 });
 
