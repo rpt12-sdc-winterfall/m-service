@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/books', { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/books',
+  {
+    useNewUrlParser: true,
+    autoIndex: false,
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const bookSchema = mongoose.Schema({
   id: {
@@ -36,7 +43,6 @@ const bookSchema = mongoose.Schema({
       betterWorldBooks: String,
       indieBound: String,
     },
-    worldcat: String,
   },
   type: String,
   pages: Number,
