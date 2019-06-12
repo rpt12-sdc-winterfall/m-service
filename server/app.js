@@ -1,11 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 // bundled with express by default
-// eslint-disable-next-line import/no-extraneous-dependencies
 const bodyParser = require('body-parser');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const morgan = require('morgan');
 const path = require('path');
-const { Book } = require('./database/index.js');
+const { Book } = require('./database/index');
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -22,8 +21,10 @@ app.use((req, res, next) => {
 });
 
 app.get('/books/:id', (req, res) => {
+  console.time('books');
   Book.findOne({ id: req.params.id }).exec()
     .then((result) => {
+      console.timeEnd('books');
       if (result === null) {
         res.send('This book doesn\'t exist!');
       } else {
@@ -41,7 +42,7 @@ app.post('/books', (req, res) => {
 
   book.save()
     .then(() => {
-      res.end();
+      res.status(201).end();
     })
     .catch((err) => {
       console.log(err);
@@ -70,7 +71,7 @@ app.patch('/books/:id', jsonParser, (req, res) => {
 app.delete('/books/:id', (req, res) => {
   Book.deleteOne({ id: req.params.id })
     .then(() => {
-      res.end();
+      res.status(200).end();
     })
     .catch((err) => {
       console.log(err);
