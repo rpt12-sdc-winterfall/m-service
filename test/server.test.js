@@ -28,16 +28,19 @@ describe('the server', () => {
           'metadata',
           'image',
         ]);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   });
 
   test('should POST a new book to the database', () => {
-    const newBook = CreateFakeDocument(100);
+    const newBook = CreateFakeDocument(10000009);
 
     expect.assertions(3);
 
     return axios.post('http://localhost:3004/books', newBook)
-      .then(() => axios('http://localhost:3004/books/100')
+      .then(() => axios('http://localhost:3004/books/10000009')
         .then((response) => {
           expect(response.data).toHaveProperty('title', newBook.title);
           expect(response.data).toHaveProperty('author', newBook.author);
@@ -51,10 +54,10 @@ describe('the server', () => {
   test('should update the book details in the database', () => {
     expect.assertions(1);
 
-    return axios.patch('http://localhost:3004/books/2', {
+    return axios.patch('http://localhost:3004/books/4', {
       author: 'Jamal',
     })
-      .then(() => axios('http://localhost:3004/books/2')
+      .then(() => axios('http://localhost:3004/books/4')
         .then((response) => {
           expect(response.data).toHaveProperty('author', 'Jamal');
         }))
