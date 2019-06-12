@@ -2,7 +2,7 @@
  * for these tests to pass. */
 
 const axios = require('axios');
-const { CreateFakeDocument } = require('../server/database/fakeData.js');
+const { CreateFakeDocument } = require('../server/database/CreateFakeDocument');
 
 describe('the server', () => {
   test('should GET a well-structured object', () => {
