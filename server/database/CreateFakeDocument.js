@@ -4,7 +4,7 @@ const CreateFakeDocument = function CreateFakeDocument(i) {
   const book = {};
 
   // initiate a bunch of new book info
-  book.id = i;
+  book._id = i;
   book.title = fake.random.words(3);
   book.author = fake.name.findName();
   book.description = fake.lorem.paragraphs();
