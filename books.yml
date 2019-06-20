@@ -1,0 +1,66 @@
+config:
+  target: 'http://localhost:3004'
+  http:
+    pool: 10
+  phases:
+    - duration: 60
+      arrivalRate: 1
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - loop:
+      - get:
+          url: "/books/{{ $randomNumber(8000000, 10000000) }}"
+      count: 1000
+  - flow:
+    - loop:
+      - post:
+          url: "/books"
+          json:
+            id: "{{ $randomNumber(10000000, 90000000) }}"
+            title: "Implemented Manager override"
+            author: "Reba Daniel"
+            description: "Suscipit eius odio. Ipsum tempora omnis beatae expedita minus quisquam aliquid. Quo et rerum accusantium.\n \rUt cupiditate nihil dolorem sint dolorem dignissimos. Odit explicabo magni assumenda. Suscipit corporis occaecati numquam rerum culpa. Enim officiis ipsum. Voluptates et accusamus aperiam aliquid hic quisquam. Et esse eaque sint eaque eligendi voluptatibus et.\n \rVoluptatum iure neque nihil voluptatum non hic dolor. Et beatae voluptatem consequatur minima ipsa nostrum id. Sint quibusdam et quis rerum dolore. Aspernatur consequatur ea. Et dolorem aut."
+            image: "http://lorempixel.com/480/640/abstract/"
+            ratings: {
+              five: 35319,
+              four: 20549,
+              three: 28358,
+              two: 13948,
+              one: 84516,
+            }
+            reviews: 13404
+            links: {
+              kindle: "http://mackenzie.name",
+              amazon: "http://heidi.org",
+              stores: {
+                audible: "http://mackenzie.name",
+                barnesAndNoble: "http://mackenzie.name",
+                walmart: "http://mackenzie.name",
+                apple: "http://mackenzie.name",
+                google: "http://mackenzie.name",
+                abebooks: "http://mackenzie.name",
+                bookDepository: "http://mackenzie.name",
+                indigo: "http://mackenzie.name",
+                alibris: "http://mackenzie.name",
+                betterWorldBooks: "http://mackenzie.name",
+                indieBound: "http://mackenzie.name",
+              }
+            }
+            type: "Re-engineered"
+            pages: 20
+            publishDate: "2018-10-06T11:43:37.318Z"
+            publisher: "Reilly Inc"
+            metadata: {
+              originalTitle: "Customer Future application",
+              isbn: 123555,
+              isbn13: 39248,
+              language: "English",
+              series: {
+                name: "open-source responsive",
+                url: "http://dino.name",
+              }
+            }
+      count: 1000

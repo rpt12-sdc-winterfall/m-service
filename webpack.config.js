@@ -1,13 +1,13 @@
 const path = require('path');
 
-const SRC_DIR = path.join(__dirname, '/client/src');
-const DIST_DIR = path.join(__dirname, '/client/dist');
+const entry = path.join(__dirname, '/client/src');
+const output = path.join(__dirname, '/public/js');
 
 module.exports = {
-  entry: `${SRC_DIR}/index.jsx`,
+  entry: `${entry}/index.jsx`,
   output: {
     filename: 'bundle.js',
-    path: DIST_DIR,
+    path: output,
   },
   module: {
     rules: [
@@ -15,7 +15,7 @@ module.exports = {
         test: /\.jsx$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           query: {
             presets: ['@babel/react', '@babel/env']
           }
@@ -24,6 +24,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
-  }
+    extensions: ['.js', '.jsx'],
+  },
 };

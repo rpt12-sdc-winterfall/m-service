@@ -1,4 +1,4 @@
-# Project Name
+# Book details
 
 > The description and metadata module for Goodreads books. Contains a lot of book info, as well as a few interactive elements (ratings, wishlist dropdown)
 
