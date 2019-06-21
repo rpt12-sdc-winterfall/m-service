@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/books/:id', (req, res) => {
-  Book.findOne({ id: Number(req.params.id) })
+  Book.findOne({ _id: Number(req.params.id) }).lean().exec()
     .then((result) => {
       if (result === null) {
         res.status(404).send('This book doesn\'t exist!');
@@ -52,7 +52,7 @@ app.post('/books', jsonParser, (req, res) => {
 
 app.patch('/books/:id', jsonParser, (req, res) => {
   Book.findOneAndUpdate(
-    { id: req.params.id },
+    { _id: req.params.id },
     req.body,
     {
       useFindAndModify: false,
@@ -69,7 +69,7 @@ app.patch('/books/:id', jsonParser, (req, res) => {
 });
 
 app.delete('/books/:id', (req, res) => {
-  Book.deleteOne({ id: req.params.id })
+  Book.deleteOne({ _id: req.params.id })
     .then(() => {
       res.status(200).end();
     })

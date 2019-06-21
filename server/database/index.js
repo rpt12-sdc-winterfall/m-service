@@ -10,11 +10,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/books',
   });
 
 const bookSchema = mongoose.Schema({
-  id: {
-    type: Number,
-    index: true,
-    unique: true,
-  },
   title: String,
   author: String,
   description: String,

@@ -10,7 +10,7 @@ const generate = function generate(db, startingPoint, endingPoint) {
 
   batches += 1;
 
-  if (batches === 101) {
+  if (batches === 1001) {
     console.log(`the whole process took ${Math.floor((now() - start).toFixed(0) / 1000)} seconds`);
     return;
   }
